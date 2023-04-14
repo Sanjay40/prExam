@@ -1,5 +1,25 @@
 # prexam
 
+
+<table>
+<tr>
+</tr>
+<tr>
+    <td><img src="" </td>
+    <td><img src="images/p1.png" </td>
+    <td><img src="" </td>
+</tr>
+<tr>
+    <td><img src="images/p2.png" </td>
+    <td><img src="images/p3.png" </td>
+    <td><img src="images/p4.png" </td>
+</tr>
+<tr>
+    <td><img src="images/p5.png" </td>
+    <td><img src="images/p6.png" </td>
+</tr>
+</table>
+
 A new Flutter project.
 
 ## Getting Started
