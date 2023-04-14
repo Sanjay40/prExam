@@ -5,9 +5,7 @@
 <tr>
 </tr>
 <tr>
-    <td><img src="" </td>
     <td><img src="images/p1.png" </td>
-    <td><img src="" </td>
 </tr>
 <tr>
     <td><img src="images/p2.png" </td>
