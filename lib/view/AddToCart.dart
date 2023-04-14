@@ -39,35 +39,46 @@ class _AddToCartState extends State<AddToCart> {
           }
           else
           {
-            return GridView.builder(
-              itemCount:snapshot.data!.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 5/6
-              ),
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
               itemBuilder: (context,index){
-                return (snapshot.data![index].addToCart == 'true ') ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 0.5
+              return (snapshot.data![index].addToCart == 'true') ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade200,
+                          blurRadius: 0.5,
+                        offset: Offset(1,4)
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("${snapshot.data![index].name}",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                        ),
+                        ),
+                        Text("${snapshot.data![index].quantity}",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                          ),
                         ),
                       ],
                     ),
-                    child: Column(
-                      children: [
-                        Text("${snapshot.data![index].name}"),
-                        Text("${snapshot.data![index].quantity}"),
-                      ],
-                    ),
                   ),
-                ) : Container();
-              },
-            );
+                ),
+              ) : Container();
+            },);
           }
           return Container();
         },

@@ -82,9 +82,9 @@ class DatabaseHelper{
     return user;
   }
 
-  Future<int> updataStatic({required String id, required String table,required User user}) async {
+  Future<int> updataStatic({required  Map<String,dynamic>? user , required String table,required , String? id}) async {
     Database? db = await database;
-    return await db!.update(tableName, user.toMap(), where: '$columnId = ?' ,whereArgs: [id]);
+    return await db!.update(tableName, user!, where: '$columnId = ?' ,whereArgs: [id]);
   }
 
 }

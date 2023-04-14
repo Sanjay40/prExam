@@ -171,7 +171,7 @@ class _HomeDataState extends State<HomeData> {
             {
               return GridView.builder(
                 itemCount:snapshot.data!.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 5/6
                 ),
@@ -179,7 +179,7 @@ class _HomeDataState extends State<HomeData> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -190,8 +190,8 @@ class _HomeDataState extends State<HomeData> {
                       ),
                       child: Column(
                         children: [
-                          Text("${snapshot.data![index].name}"),
-                          Text("${snapshot.data![index].quantity}"),
+                          Text(snapshot.data![index].name),
+                          Text(snapshot.data![index].quantity),
                           Text("${snapshot.data![index].addToCart}"),
                           SizedBox(height: 100,),
                           GestureDetector(
@@ -203,9 +203,20 @@ class _HomeDataState extends State<HomeData> {
                                 else{
                                   snapshot.data![index].addToCart = 'false';
                                 }
-                                final data = User(name: snapshot.data![index].name, quantity: snapshot.data![index].quantity, addToCart:snapshot.data![index].addToCart);
-                                await dbHelper.updataStatic(user: data,id: '1',table: DatabaseHelper.tableName);
-                                print("add to cart ${1}");
+                                //final data = User(name: snapshot.data![index].name, quantity: snapshot.data![index].quantity, addToCart:snapshot.data![index].addToCart);
+
+                                Map<String,dynamic> updateRow  = {
+                                  DatabaseHelper.columnName : snapshot.data![index].name,
+                                  DatabaseHelper.columnQua : snapshot.data![index].quantity,
+                                  DatabaseHelper.columnAdd : snapshot.data![index].addToCart
+                                };
+
+                                int ind = index++;
+                                //await dbHelper.updataStatic(user: data,id: '1',table: DatabaseHelper.tableName);
+                               // await dbHelper.updataStatic(id: snapshot.data![index].id, table: DatabaseHelper.tableName, user: updateRow);
+                                await dbHelper.updataStatic(user: updateRow, table: DatabaseHelper.tableName , id: index.toString());
+                                print("add to cart ${index.toString()}");
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Data Added")));
 
                             },
                             child: Padding(
